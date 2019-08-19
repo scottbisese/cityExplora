@@ -1,4 +1,5 @@
 const express =require('express');
+require('dotenv').config();
 
 const app =express();
 
@@ -25,7 +26,8 @@ app.get('/weather', (request, response) => {
     response.send('it works');
 });
 
-app.listen(3000, () => {
+const PORT = process.env.PORT || 3000
+app.listen(PORT, () => {
     console.log('server is listening');
 });
 
