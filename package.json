@@ -1,0 +1,24 @@
+{
+  "name": "cityexplora",
+  "version": "1.0.0",
+  "description": "class 6 broh",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndyFiedler/cityExplora.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndyFiedler/cityExplora/issues"
+  },
+  "homepage": "https://github.com/AndyFiedler/cityExplora#readme",
+  "dependencies": {
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1"
+  }
+}
