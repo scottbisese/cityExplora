@@ -18,15 +18,17 @@ app.get('/location', (request, response) => {
 });
 
 app.get('/weather', (request, response) => {
-    try{
-        const darkData = require('./darkysky.json');
-        const time = new Weather(request.query.data.time, darkData)
-        response.send(weather);
-    } catch(error){
-        response.status(500).send("Sorry! Something went wrong.")
-    }
-    
+    const darkData = require('./darkysky.json');
+
+    let weatherResults = []
+
+    darkData.daily.data.forEach(day => {
+        weatherResults.push(new Weather(day));
+    });
+
+    response.send(weatherResults);
 });
+
 
 function Location(query, geoData){
     this.search_query = query,
@@ -35,16 +37,11 @@ function Location(query, geoData){
     this.longitude = geoData.results[0].geometry.location.lng;
     
 }
-function Weather(query, darkData){
-    this.search_query = query,
-    this.formatted_query = geoData.results[0].formatted_address;
-    this.weather = darkData.results[0].daily.summary;
-    this.time = darkData.results[0].data.time;
-    
-}
-app.get('/weather', (request, response) => {
-    response.send('it works');
-});
+function Weather(darkData){
+    let rawTime = darkData.time;
+    this.weather = darkData.summary;
+    this.time = new Date (rawTime * 1000).toString().slice(0,15);
+};
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
