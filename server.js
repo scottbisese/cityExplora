@@ -39,7 +39,7 @@ function Location(query, geoData){
 }
 function Weather(darkData){
     let rawTime = darkData.time;
-    this.weather = darkData.summary;
+    this.forcast = darkData.summary;
     this.time = new Date (rawTime * 1000).toString().slice(0,15);
 };
 
