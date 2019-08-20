@@ -1,18 +1,16 @@
 const express =require('express');
 const cors = require('cors');
 require('dotenv').config();
+const superagent = require('superagent');
 
 const app =express();
 app.use(cors());
 
 //localhost:3000/location?location=Blah
-
-
-
 //route for location
 app.get('/location', (request, response) => {
     try{
-        const geoData = require('./geo.json');
+        superagent.get(`https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=YOUR_API_KEY`)
         const location = new Location(request.query.location, geoData)
         response.send(location);
     } catch(error){
