@@ -17,6 +17,17 @@ app.get('/location', (request, response) => {
     
 });
 
+app.get('/weather', (request, response) => {
+    try{
+        const geoData = require('./geo.json');
+        const location = new Weather(request.query.weather, geoData)
+        response.send(weather);
+    } catch(error){
+        response.status(500).send("Sorry! Something went wrong.")
+    }
+    
+});
+
 function Location(query, geoData){
     this.search_query = query,
     this.formatted_query = geoData.results[0].formatted_address;
