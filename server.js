@@ -24,20 +24,19 @@ app.get('/location', (request, response) => {
 //route for weather
 app.get('/weather', (request, response) => {
     try{const darkData = require('./darkysky.json');
-
         let weatherResults = [];
-
-    //fills weatherResults array 
+        //fills weatherResults array 
         darkData.daily.data.forEach(day => {
-    //grabs JSON stuff and adds to weather array
-        weatherResults.push(new Weather(day));
-    });
-        } catch(error){
-        response.status(500).send("Sorry! Something went wrong.")
+        //grabs JSON stuff and adds to weather array
+        weatherResults.push(new Weather(day)); 
+        response.send(weatherResults);
+        });
+        } 
+    catch(error){
+    response.status(500).send("Sorry! Something went wrong.")
     }
-    
-//return results
-    response.send(weatherResults);
+    //return results
+  
 });
 
 //location contstructor
