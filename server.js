@@ -29,14 +29,13 @@ app.get('/weather', (request, response) => {
         darkData.daily.data.forEach(day => {
         //grabs JSON stuff and adds to weather array
         weatherResults.push(new Weather(day)); 
-        response.send(weatherResults);
         });
+        response.send(weatherResults);
         } 
     catch(error){
     response.status(500).send("Sorry! Something went wrong.")
     }
     //return results
-  
 });
 
 //location contstructor
